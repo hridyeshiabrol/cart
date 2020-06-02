@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+    <script type="text/javascript">
+        function doFill() {
+            var item = document.getElementById("item");
+            var price = document.getElementById("price");
+            var cbox = document.getElementById("cat");
+            if (cbox.selectedIndex == 0) {
+                return;
+            }
+            item.innerHTML = "SIDDHANT";
+            price.innerHTML = "";
+
+            if (cbox.selectedIndex == 1) {
+                var itemary = ["Quantitative-apti", "Reasoning","Let us C"];
+                var priceary = ["550", "450","400"];
+                for (i = 0; i < itemary.length; i++) {
+                    var itm = document.createElement("option");
+                    itm.text = itemary[i];
+                    itm.value = itemary[i];
+                    item.add(itm);
+                    var pri = document.createElement("option");
+                    pri.text = priceary[i];
+                    pri.value = priceary[i];
+                    price.add(pri);
+                }
+            } else if (cbox.selectedIndex == 2) {
+                var itemary = ["HP", "DELL", "MSI", "ACER"];
+                var priceary = ["58000", "45000", "47000", "55000"];
+                for (i = 0; i < itemary.length; i++) {
+                    var itm = document.createElement("option");
+                    itm.text = itemary[i];
+                    itm.value = itemary[i];
+                    item.add(itm);
+                    var pri = document.createElement("option");
+                    pri.text = priceary[i];
+                    pri.value = priceary[i];
+                    price.add(pri);
+                }
+
+            }
+        }
+
+        function cart() {
+            var item = document.getElementById("item");
+            var price = document.getElementById("price");
+            //var cbox = document.getElementById("cat");
+            var cit = document.getElementById("cartitem");
+            var cp = document.getElementById("cartprice");
+            var indx = item.selectedIndex;
+            cit.options.add(new Option(item[indx].text,item[indx].text));
+            cp.options.add(new Option(price[indx].text,price[indx].text));
+            //cp.options.add(price[indx]);
+
+        }
+
+        function doBill() {
+            var cp = document.getElementById("cartprice");
+            var total = 0;
+            for (i = 1; i < cp.length; i++) {
+                total += parseFloat(cp[i].text);
+            }
+
+            document.getElementById("dis").value = "Rs-" + total;
+        }
+
+    </script>
+</head>
+
+<body bgcolor="skyblue">
+    <center>
+        <h1><b>ONLINE SHOPPING:</b></h1>
+        
+        <br>
+        <br>
+        <b>Items:-</b>
+        
+        <select id="cat" onchange="doFill();">
+            <option value="none">Select</option>
+            <option value="books">books</option>
+            <option value="laptops">laptops</option>
+        </select>
+        <br><br>
+        Avial item:-
+        <select id="item" size="4" style="width:130px" ondblclick="cart();">
+            <option value="none">available-item</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Price:
+        <select id="price" size="4" style="width:130px">
+            <option value="none">price</option>
+        </select>
+        <br><br><br>
+        Cart:-
+        <select id="cartitem" size="4" style="width:150px">
+            <option value="none" style="background-color: slateblue">CART ITEMS:-</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Amt-price:-
+        <select id="cartprice" size="4" style="width:150px">
+            <option value="none" style="background-color: slateblue">AMOUNT:-</option>
+        </select>
+        <br><br>
+        <input type="button" value="BILL" onclick="doBill();">
+        <br>
+        <input type="text" id="dis">
+    </center>
+
+</body>
+
+</html>
